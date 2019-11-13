@@ -33,6 +33,57 @@ void readfile(void)
 	finput.close();
 }
 
+void LRU(int* Pages, int* Blocks, int page, int block)
+{
+	int re_used = 0, cont = 0;        //re_used:最近使用的作业； count：统计页面置换次数
+
+
+	//get:物理块是否等待注入新页面(-1：否)                                                              
+	//flag:标记当前序号是否已注入内存（-1：否）
+	//used_block_num:最近使用过的页面的物理块序号
+	int get = -1, flag = -1, used_clock_num = -1;
+
+	int recentUsed[Maxblock];
+	for (int i = 0; i < page; i++)
+	{
+		recentUsed[i] = 0;
+	}
+	
+	for (int i = 0; i < page; i++)
+	{
+		for (int j = 0; j < block; j++)
+		{
+			if (Blocks[j] == 0)
+			{
+				get = j;
+				break;
+			}
+			
+		}
+
+		for (int j = 0; j < block; j++)
+		{
+			if (Blocks[j] == Pages[i])
+			{
+				flag = j;
+				break;
+			}
+		}
+		
+		for (int j = 0; j < block; i++)
+		{
+			if (page == Blocks[j])
+			{
+				re_used = Blocks[j];
+				
+			}
+			
+		}
+		
+	}
+	
+}
+
 int main(int argc,char *argv[])
 {
 	for (int i = 0; i < pos; i++)
